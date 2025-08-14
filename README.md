@@ -44,7 +44,7 @@
     - [Ön koşullar](#önkoşullar)
     - [Kurulum](#kurulum)
     - [Çalıştırma](#çalıştırma)
-    - [Kullanım](#kullanim)
+    - [Kullanım](#kullanım)
 
 ---
 
