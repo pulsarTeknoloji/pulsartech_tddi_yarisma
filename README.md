@@ -160,7 +160,7 @@ Bu repoda ki projeyi kullanmak için:
 
 4. **Bağımlılıkları yükleyin:**
 
-** Python sanal ortam oluşturun**
+**Python sanal ortam oluşturun**
 
 ```sh
 ❯ python -m venv venv
