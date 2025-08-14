@@ -150,7 +150,13 @@ Bu repoda ki projeyi kullanmak için:
     ❯ cd "Yarışma Programı"
     ```
 
-3. **Bağımlılıkları yükleyin:**
+   **Ardından:**
+
+    ```sh
+    ❯ .zip uzantılı dosyalarını dizine ayıklayın
+    ```
+
+4. **Bağımlılıkları yükleyin:**
 
 ** Python sanal ortam oluşturun**
 
