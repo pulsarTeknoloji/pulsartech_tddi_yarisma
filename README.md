@@ -4,7 +4,7 @@
 <div align="center">
 
 
-# NLP-DENEME
+# PULSAR TECH - TDDİ YARIŞMA
 
 <em>Transforming Language into Action with Precision</em>
 
