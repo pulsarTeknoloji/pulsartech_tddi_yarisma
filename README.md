@@ -153,7 +153,7 @@ Bu repoda ki projeyi kullanmak için:
    **Ardından:**
 
     ```sh
-    ❯ .zip uzantılı dosyalarını dizine ayıklayın
+    ❯ .zip uzantılı dosyaları dizine ayıklayın
     ```
 
 4. **Bağımlılıkları yükleyin:**
