@@ -6,14 +6,12 @@
 
 # PULSAR TECH - TDDİ YARIŞMA
 
-<em>Transforming Language into Action with Precision</em>
-
 <!-- BADGES -->
 <img src="https://img.shields.io/github/last-commit/iamfurkann/nlp-deneme?style=flat&logo=git&logoColor=white&color=0080ff" alt="last-commit">
 <img src="https://img.shields.io/github/languages/top/iamfurkann/nlp-deneme?style=flat&color=0080ff" alt="repo-top-language">
 <img src="https://img.shields.io/github/languages/count/iamfurkann/nlp-deneme?style=flat&color=0080ff" alt="repo-language-count">
 
-<em>Built with the tools and technologies:</em>
+<em>Kullanılar teknolojiler ve araçlar</em>
 
 <img src="https://img.shields.io/badge/Markdown-000000.svg?style=flat&logo=Markdown&logoColor=white" alt="Markdown">
 <img src="https://img.shields.io/badge/Redis-FF4438.svg?style=flat&logo=Redis&logoColor=white" alt="Redis">
