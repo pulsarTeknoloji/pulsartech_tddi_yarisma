@@ -40,10 +40,10 @@
 ## İçerik
 
 - [Genel Bakış](#genel-bakış)
-- [Başlarken](#baslarken)
-    - [Önkoşullar](#onkosullar)
+- [Başlarken](#başlarken)
+    - [Ön koşullar](#önkoşullar)
     - [Kurulum](#kurulum)
-    - [Çalıştırma](#calistirma)
+    - [Çalıştırma](#çalıştırma)
     - [Kullanım](#kullanim)
 
 ---
