@@ -39,12 +39,12 @@
 
 ## İçerik
 
-- [Genel Bakış](#overview)
-- [Başlarken](#getting-started)
-    - [Ön gereksinimler](#prerequisites)
-    - [İndirmeler](#installation)
-    - [Usage](#usage)
-    - [Testing](#testing)
+- [Genel Bakış](#genel-bakış)
+- [Başlarken](#baslarken)
+    - [Önkoşullar](#onkosullar)
+    - [Kurulum](#kurulum)
+    - [Çalıştırma](#calistirma)
+    - [Kullanım](#kullanim)
 
 ---
 
