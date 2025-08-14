@@ -45,6 +45,7 @@
     - [Kurulum](#kurulum)
     - [Çalıştırma](#çalıştırma)
     - [Kullanım](#kullanım)
+- [Veri Seti](#veri-seti)
 
 ---
 
@@ -208,6 +209,12 @@ Kullanıcı arayüzünü çalıştırmak için:
 ### Kullanım
 
 Kullancı arayüzü açıldıktan sonra aşağıdaki textbardan model ile konuşabilirsiniz.
+
+## Veri Seti
+
+Aşağıda ki verdiğimiz açık kaynak veri seti ve eğitim kodları ile kendi modelinizi eğitebilirsiniz.
+
+**[Veri Seti Açık Kaynak Linki](https://drive.google.com/drive/folders/1LQk5Q6bT3QHWTSpVUBmGawC1l23q0zaM?usp=sharing)**
 
 ---
 
