@@ -156,6 +156,8 @@ Bu repoda ki projeyi kullanmak için:
     ❯ .zip uzantılı dosyaları dizine ayıklayın
     ```
 
+    Çıkarılan klasörlerin pathlerini kopyalayıp router.py dosyasında ki "INTENT_MODEL_PATH" değişkenine "Intent" klasörünün pathi, daha sonrasında ise yine aynı dosyada ki "NER_MODEL_PATH" değişkenine "Ner_Search" klasörünün pathini yapıştırın bu işlem bert modellerini kullanmak için önemlidir.
+
 4. **Bağımlılıkları yükleyin:**
 
 ** Python sanal ortam oluşturun**
