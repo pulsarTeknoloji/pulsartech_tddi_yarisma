@@ -51,9 +51,15 @@
 
 ## Genel Bakış
 
-**Tercih Chat**, uygulamalarınızda **ileri seviye doğal dil işleme (NLP)**, **içerik getirme** ve **kullanıcı etkileşimi** süreçlerini kolaylaştırmak için tasarlanmış kapsamlı bir geliştirici araç setidir.  
-Birden fazla bileşeni entegre ederek **verimli, doğru ve kullanıcı dostu** dil odaklı işlemler sunar.
+**Tercih Chat**, YKS tercihleri için geliştirilmiş **yapay zeka destekli bir danışmandır**.  
+Kullanıcılara **YÖK Atlas**, üniversitelerin resmi siteleri ve diğer güvenilir kaynaklardan **hızlıca bilgi toplayarak**, **Türkçe doğal dil işleme (NLP)** yöntemleriyle uygun tercih seçenekleri sunar.
 
+### 🧠 NLP Aşamaları
+
+- 🔹 **Sorgu Analizi**: Kullanıcının gönderdiği mesajdan niyet ve önemli bilgileri çıkarır  
+- 🔹 **İçerik Toplama ve Ön İşleme**: Güvenilir kaynaklardan verileri alır ve hazırlar  
+- 🔹 **Alaka Sıralaması**: Toplanan içerikleri kullanıcının sorgusuna göre önem sırasına göre sıralar  
+- 🔹 **Yanıt Sentezi**: Sonuçları rehberlikçi bir profille birleştirip kullanıcıya sunar  
 ---
 
 ## 🚀 Servisler ve İş Akışı
