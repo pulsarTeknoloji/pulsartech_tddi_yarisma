@@ -114,7 +114,7 @@ Tüm sürecin **orchestrator** (yöneticisi) olarak çalışır.
 
 ---
 
-💡 **nlp-deneme**, karmaşık NLP iş akışlarını basitleştirir, yüksek doğrulukta sonuçlar üretir ve kullanıcıya sezgisel, rehberlik odaklı yanıtlar sunar.
+💡 **Tercih Chat**, karmaşık NLP iş akışlarını basitleştirir, yüksek doğrulukta sonuçlar üretir ve kullanıcıya sezgisel, rehberlik odaklı yanıtlar sunar.
 
 ---
 
