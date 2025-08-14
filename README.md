@@ -37,26 +37,28 @@
 
 ---
 
-## Table of Contents
+## İçerik
 
-- [Overview](#overview)
-- [Getting Started](#getting-started)
-    - [Prerequisites](#prerequisites)
-    - [Installation](#installation)
+- [Genel Bakış](#overview)
+- [Başlarken](#getting-started)
+    - [Ön gereksinimler](#prerequisites)
+    - [İndirmeler](#installation)
     - [Usage](#usage)
     - [Testing](#testing)
 
 ---
 
-## Overview
+## Genel Bakış
 
-nlp-deneme is a comprehensive developer toolset designed to facilitate advanced natural language processing, content retrieval, and user interaction within your applications. It integrates multiple components to deliver efficient, accurate, and user-friendly language-related operations.
+Bu repo, uygulamalarınızda gelişmiş türkçe doğal dil işleme, içerik getirme ve kullanıcı etkileşimini kolaylaştırmak için tasarlanmış kapsamlı bir geliştirici araç setidir.
+Birden fazla bileşeni entegre ederek verimli, doğru ve kullanıcı dostu dil odaklı işlemler sunar.
 
-**Why nlp-deneme?**
+**Neden Tercih Chat**
 
-This project aims to streamline complex NLP workflows and enhance search and content understanding. The core features include:
+Bu proje, karmaşık NLP iş akışlarını basitleştirmeyi ve arama ile içerik anlama yeteneklerini geliştirmeyi amaçlamaktadır.
+Temel özellikleri şunlardır:
 
-- 🧩 **🔍 Re-ranking Service:** Implements a two-stage process with bi-encoder filtering and cross-encoder scoring to refine search results for higher relevance.
+- 🧩 **🔍 Re-ranking Servisi:** Implements a two-stage process with bi-encoder filtering and cross-encoder scoring to refine search results for higher relevance.
 - 🌐 **🕸️ Content Retrieval:** Combines Selenium scraping, Google Custom Search, and Redis caching for scalable, targeted web content extraction.
 - 🎨 **🖥️ User Interface:** Provides an intuitive GUI for seamless data input, processing, and output visualization.
 - ⚙️ **🤖 Microservice Orchestration:** Manages interactions between NLP models, retrieval systems, and response generation within a modular architecture.
@@ -64,58 +66,93 @@ This project aims to streamline complex NLP workflows and enhance search and con
 
 ---
 
-## Getting Started
+## Başlarken
 
-### Prerequisites
+### Önkoşullar
 
-This project requires the following dependencies:
+Bu proje için aşağıdaki bağımlılıklar gereklidir:
 
-- **Programming Language:** Python
-- **Package Manager:** Pip
+- **Programlama dili:** Python
+- **Paket Yönetimi:** Pip
 
-### Installation
+### Kurulum
 
-Build nlp-deneme from the source and install dependencies:
+Bu repoda ki projeyi kullanmak için:
 
-1. **Clone the repository:**
+1. **Repoyu cihazına kopyalayın**
 
     ```sh
     ❯ git clone https://github.com/iamfurkann/nlp-deneme
     ```
 
-2. **Navigate to the project directory:**
+2. **Proje dizinine gidin:**
 
     ```sh
-    ❯ cd nlp-deneme
+    ❯ cd "Yarışma Programı"
     ```
 
-3. **Install the dependencies:**
+3. **Bağımlılıkları yükleyin:**
 
-**Using [pip](https://pypi.org/project/pip/):**
-
-```sh
-❯ pip install -r NLP-PULSARTECH/requirements.txt
-```
-
-### Usage
-
-Run the project with:
-
-**Using [pip](https://pypi.org/project/pip/):**
+** Python sanal ortam oluşturun**
 
 ```sh
-python {entrypoint}
+❯ python -m venv venv
 ```
 
-### Testing
+**Etkinleştirme**
+Windows
+```sh
+❯ venv\Scripts\activate
+```
 
-Nlp-deneme uses the {__test_framework__} test framework. Run the test suite with:
+macOS / Linux
+```sh
+❯ source venv/bin/activate
+```
 
-**Using [pip](https://pypi.org/project/pip/):**
+**[pip](https://pypi.org/project/pip/):**
 
 ```sh
-pytest
+❯ pip install -r requirements.txt
 ```
+
+### Çalıştırma
+
+Kullanıcı arayüzünü çalıştırmak için:
+
+```sh
+❯ python gui.py
+```
+
+Bu program sayesinde ilk başta açılan boot checker gerekli servisleri ve bağımlıkları kontrol edecek eksik varsa sizden izin isteyerek yükleyecektir. Eğer ki servisler çalışmazsa programı durdurun ve sırayla farklı terminallerde tek tek şunları yazın:
+
+**1. terminal**
+```sh
+❯ python -m uvicorn  retrieve:app --reload --port 8000
+```
+
+**2. terminal**
+```sh
+❯ python -m uvicorn  router:app --reload --port 8001
+```
+
+**3. terminal**
+```sh
+❯ python -m uvicorn  re-rank:app --reload --port 8002
+```
+
+**3. terminal**
+```sh
+❯ python -m uvicorn  gate:app --reload --port 8003
+```
+
+Bu sayede servisler tekrar açılacak daha sonrasında ise yine,
+Kullanıcı arayüzünü çalıştırmak için:
+
+```sh
+❯ python gui.py
+```
+
 
 ---
 
