@@ -82,7 +82,7 @@ Bu repoda ki projeyi kullanmak için:
 1. **Repoyu cihazına kopyalayın**
 
     ```sh
-    ❯ git clone https://github.com/iamfurkann/nlp-deneme
+    ❯ git clone https://github.com/pulsarTeknoloji/pulsartech_tddi_yarisma.git
     ```
 
 2. **Proje dizinine gidin:**
@@ -141,7 +141,7 @@ Bu program sayesinde ilk başta açılan boot checker gerekli servisleri ve bağ
 ❯ python -m uvicorn  re-rank:app --reload --port 8002
 ```
 
-**3. terminal**
+**4. terminal**
 ```sh
 ❯ python -m uvicorn  gate:app --reload --port 8003
 ```
@@ -153,6 +153,9 @@ Kullanıcı arayüzünü çalıştırmak için:
 ❯ python gui.py
 ```
 
+### Kullanım
+
+Kullancı arayüzü açıldıktan sonra aşağıdaki textbardan model ile konuşabilirsiniz.
 
 ---
 
