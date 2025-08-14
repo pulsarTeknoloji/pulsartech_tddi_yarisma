@@ -50,19 +50,71 @@
 
 ## Genel Bakış
 
-Bu repo, uygulamalarınızda gelişmiş türkçe doğal dil işleme, içerik getirme ve kullanıcı etkileşimini kolaylaştırmak için tasarlanmış kapsamlı bir geliştirici araç setidir.
-Birden fazla bileşeni entegre ederek verimli, doğru ve kullanıcı dostu dil odaklı işlemler sunar.
+**Tercih Chat**, uygulamalarınızda **ileri seviye doğal dil işleme (NLP)**, **içerik getirme** ve **kullanıcı etkileşimi** süreçlerini kolaylaştırmak için tasarlanmış kapsamlı bir geliştirici araç setidir.  
+Birden fazla bileşeni entegre ederek **verimli, doğru ve kullanıcı dostu** dil odaklı işlemler sunar.
 
-**Neden Tercih Chat**
+---
 
-Bu proje, karmaşık NLP iş akışlarını basitleştirmeyi ve arama ile içerik anlama yeteneklerini geliştirmeyi amaçlamaktadır.
-Temel özellikleri şunlardır:
+## 🚀 Servisler ve İş Akışı
 
-- 🧩 **🔍 Re-ranking Servisi:** Implements a two-stage process with bi-encoder filtering and cross-encoder scoring to refine search results for higher relevance.
-- 🌐 **🕸️ Content Retrieval:** Combines Selenium scraping, Google Custom Search, and Redis caching for scalable, targeted web content extraction.
-- 🎨 **🖥️ User Interface:** Provides an intuitive GUI for seamless data input, processing, and output visualization.
-- ⚙️ **🤖 Microservice Orchestration:** Manages interactions between NLP models, retrieval systems, and response generation within a modular architecture.
-- 🚀 **🚦 FastAPI Routing:** Handles dynamic query classification, intent detection, and context-aware response generation efficiently.
+Sistem, gelen bir kullanıcı sorgusunu aşağıdaki sıra ile işler:
+
+---
+
+### 1️⃣ Router Servisi
+Kullanıcının sorgusunun **amacını (intent)** ve **içerdiği varlıkları (entities)** tespit ederek sonraki servisler için gerekli verileri hazırlar.
+
+- **Intent Classification**  
+  - **BERTurk (bert-base-turkish-uncased)** tabanlı, özel olarak eğitilmiş model ile sorgu, önceden tanımlı **niyet listesi** üzerinden analiz edilir.
+- **Named Entity Recognition (NER)**  
+  - Yine **BERTurk** mimarisi üzerine eğitilmiş NER modeli ile sorgu içerisindeki **yer adları, kurum isimleri, tarih, sayı gibi varlıklar** etiketlenir.
+- Çıkan sonuçlar **Retrieve Servisi**ne iletilir.
+
+---
+
+### 2️⃣ Retrieve Servisi (İçerik Getirme)
+Kullanıcının sorgusuna uygun bilgileri güvenilir kaynaklardan toplar.
+
+- **Araçlar**: Selenium scraping, Google Custom Search API, Redis caching
+- **Kaynaklar**: YÖK Atlas, üniversitelerin resmi siteleri, akademik veri tabanları ve güvenilir web siteleri
+- **Cache Mantığı**:  
+  - **Cache hit** → Mevcut veri hızlıca getirilir  
+  - **Cache miss** → Yeni veriler toplanır, işlenir ve cache’e eklenir
+- Toplanan içerikler **Re-ranking Servisi**ne iletilir.
+
+---
+
+### 3️⃣ Re-ranking Servisi
+Retrieve Servisi’nden gelen içerikleri iki aşamada yeniden sıralar:
+
+1. **Bi-encoder** ile ön filtreleme  
+2. **Cross-encoder** ile alaka puanlaması
+
+Bu işlem sonunda, kullanıcının sorgusuyla **en yüksek alaka düzeyine sahip sonuçlar** belirlenir ve **Gate Servisi**ne gönderilir.
+
+---
+
+### 4️⃣ Gate Servisi
+Tüm sürecin **orchestrator** (yöneticisi) olarak çalışır.
+
+- Router, Retrieve ve Re-ranking servislerini **doğru sırayla** çalıştırır
+- Re-ranking’den çıkan en alakalı sonuçları, özel eğitilmiş ve **prompt-engineering** ile optimize edilmiş bir **LLM** üzerinden geçirir
+- LLM, **rehberlikçi (advisor)** profiline uygun bir üslupla sonuçları sentezler
+- Nihai yanıt kullanıcıya iletilir
+
+---
+
+## 🛠️ Teknolojiler
+- **Modelleme**: PyTorch, HuggingFace Transformers, BERTurk (bert-base-turkish-uncased)
+- **API & Mikroservis**: FastAPI
+- **Veri Toplama**: Selenium, Google Custom Search API
+- **Cache Yönetimi**: Redis
+- **Model Orkestrasyonu**: Python async/await, REST API
+- **LLM Çıktı Optimizasyonu**: Prompt Engineering
+
+---
+
+💡 **nlp-deneme**, karmaşık NLP iş akışlarını basitleştirir, yüksek doğrulukta sonuçlar üretir ve kullanıcıya sezgisel, rehberlik odaklı yanıtlar sunar.
 
 ---
 
