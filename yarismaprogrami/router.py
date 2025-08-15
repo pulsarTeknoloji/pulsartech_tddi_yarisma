@@ -12,8 +12,9 @@ import os
 
 GEMINI_API_KEY = "AIzaSyD9EGmWuDExT5rMyuJeUDbj1-RUPCOI91k"
 
-INTENT_MODEL_PATH = "C:\\Users\\esadf\\OneDrive\\Masaüstü\\NLP-PULSARTECH\\Intent"
-NER_MODEL_PATH = "C:\\Users\\esadf\\OneDrive\\Masaüstü\\NLP-PULSARTECH\\Ner_Search"
+# --- LÜTFEN GÜNCELLEYİN ---
+INTENT_MODEL_PATH = "C:\\Users\\esadf\\OneDrive\\Masaüstü\\program\\pulsartech_tddi_yarisma\\yarismaprogrami\\Intent\\Intent"
+NER_MODEL_PATH = "CC:\\Users\\esadf\\OneDrive\\Masaüstü\\program\\pulsartech_tddi_yarisma\\yarismaprogrami\\Ner_Search\\Ner_Search"
 
 TASK_ORIENTED_INTENTS = [
     "universite_bilgisi_isteme", "bolum_bilgisi_isteme", "kontenjan_bilgisi_isteme",
@@ -111,7 +112,7 @@ async def create_execution_plan(request: QueryRequest):
                 print("[ROUTER] Türkçe karakter uyumluluğu için metin küçültülüyor...")
                 query_for_nlp = request.user_query.casefold()
                 entities_raw = ner_pipeline(query_for_nlp)
-            
+
             queries_response_str = await call_gemini_for_queries(request.user_query)
             if queries_response_str:
                 try: optimized_queries = json.loads(queries_response_str)

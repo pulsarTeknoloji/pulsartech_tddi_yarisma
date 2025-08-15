@@ -7,6 +7,7 @@ from trafilatura import fetch_url, extract
 from typing import List, Dict, Any, Optional
 from contextlib import asynccontextmanager
 import time
+
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -17,6 +18,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 GOOGLE_API_KEY = "AIzaSyD9EGmWuDExT5rMyuJeUDbj1-RUPCOI91k"
 SEARCH_ENGINE_ID = "7591159fd88734d3d"
 REDIS_URL = "rediss://default:ASZeAAIjcDE0NjliYmJkYjcwYmI0N2ZlOWQ0ZGI4ZmY1NTFmN2Q4NnAxMA@pet-goose-9822.upstash.io:6379"
+
 
 PRIORITY_SITE = "yokatlas.yok.gov.tr"
 YOKATLAS_WIZARD_URL = "https://yokatlas.yok.gov.tr/tercih-sihirbazi.php?p=say"
@@ -54,6 +56,9 @@ class FetchContentRequest(BaseModel):
     urls: List[str]
 
 def scrape_yok_atlas_with_selenium(entities: Optional[List[ExtractedEntity]]) -> Optional[Dict[str, str]]:
+    """
+    Selenium ile YÖK Atlas tercih sihirbazını kullanarak veri kazır.
+    """
     if not entities:
         return None
         
@@ -162,6 +167,7 @@ async def search_google_async(query: str) -> List[Dict[str, str]]:
 @app.post("/retrieve", response_model=Dict[str, Any])
 async def retrieve_snippets(request: RetrieveRequest):
     final_results = []
+
     if request.extracted_entities and any(e.entity_group in ['UNI', 'DEPT'] for e in request.extracted_entities):
         loop = asyncio.get_event_loop()
         yok_atlas_result = await loop.run_in_executor(
@@ -169,7 +175,7 @@ async def retrieve_snippets(request: RetrieveRequest):
         )
         if yok_atlas_result:
             final_results.append(yok_atlas_result)
-            
+
     if not final_results:
         print("[RETRIEVER] Selenium sonucu yok veya görev uygun değil. Genel Google araması yapılıyor...")
         entity_based_queries = construct_queries_from_entities(request.extracted_entities or [])

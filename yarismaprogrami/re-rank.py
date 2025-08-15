@@ -1,5 +1,3 @@
-# re-ranker.py
-
 from fastapi import FastAPI
 from pydantic import BaseModel
 from sentence_transformers import SentenceTransformer, CrossEncoder, util

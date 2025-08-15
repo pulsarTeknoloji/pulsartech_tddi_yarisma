@@ -3,6 +3,8 @@ import subprocess
 import socket
 import time
 import pkg_resources
+import uuid
+
 from PySide6.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QTextEdit, QPushButton,
     QLabel, QLineEdit, QHBoxLayout, QFrame, QProgressBar,
@@ -62,6 +64,14 @@ class Theme:
                 font-size: 22px;
                 font-weight: bold;
                 background: transparent;
+            }}
+            QLabel#sessionIdLabel {{
+                color: {theme['secondary_text_color']};
+                font-size: 11px;
+                background: transparent;
+                padding: 2px 8px;
+                border: 1px solid {theme['border_color']};
+                border-radius: 8px;
             }}
             QLabel#linkLabel {{
                 color: {theme['accent_color']};
@@ -161,7 +171,7 @@ class InstallWorker(QThread):
         try:
             total_packages = len(self.packages)
             for i, package in enumerate(self.packages):
-                self.signals.log.emit(f"� {package} paketi yükleniyor...")
+                self.signals.log.emit(f"⏳ {package} paketi yükleniyor...")
                 subprocess.check_output([sys.executable, "-m", "pip", "install", package], stderr=subprocess.STDOUT)
                 self.signals.log.emit(f"✅ {package} başarıyla yüklendi")
                 progress = int(((i + 1) / total_packages) * 100)
@@ -371,8 +381,8 @@ class ModernLoadingScreen(QWidget):
         self.install_button.hide()
         self.dependencies = self.check_requirements()
         if self.dependencies["missing"]:
-                 self.append_log("⚠️ Bazı paketler hala eksik görünüyor.")
-                 self.update_progress(75, "Yükleme başarısız oldu.")
+            self.append_log("⚠️ Bazı paketler hala eksik görünüyor.")
+            self.update_progress(75, "Yükleme başarısız oldu.")
         else:
             self.update_progress(75, "Yükleme başarılı.")
             self.start_all_services()
@@ -471,6 +481,7 @@ class ChatbotGUI(QWidget):
         self.api_worker = None
         self.typing_indicator = None
         self.current_theme = 'dark'
+        self.session_id = str(uuid.uuid4())
         self.setup_ui()
         self.apply_theme()
         self.add_welcome_message()
@@ -500,6 +511,10 @@ class ChatbotGUI(QWidget):
         title = QLabel("TercihChat")
         title.setObjectName("title")
 
+        session_id_label = QLabel(f"Oturum: {self.session_id[:8]}...")
+        session_id_label.setObjectName("sessionIdLabel")
+        session_id_label.setToolTip(self.session_id)
+
         link_label = QLabel('<a href="http://tercihnoktam.com">tercihnoktam.com</a>')
         link_label.setObjectName("linkLabel")
         link_label.setOpenExternalLinks(True)
@@ -520,6 +535,7 @@ class ChatbotGUI(QWidget):
         header_layout.addWidget(title)
         header_layout.addWidget(link_label)
         header_layout.addStretch()
+        header_layout.addWidget(session_id_label)
         header_layout.addWidget(self.theme_toggle_button)
         header_layout.addWidget(exit_button)
         main_layout.addWidget(header_frame)
@@ -611,7 +627,12 @@ class ChatbotGUI(QWidget):
         self.typing_timer.timeout.connect(animate_typing)
         self.typing_timer.start(400)
 
-        self.api_worker = ApiServiceWorker(self.api_url, {"query": message})
+        payload = {
+            "query": message,
+            "session_id": self.session_id
+        }
+
+        self.api_worker = ApiServiceWorker(self.api_url, payload)
         self.api_worker.signals.result.connect(self.on_api_success)
         self.api_worker.signals.error.connect(self.on_api_error)
         self.api_worker.signals.finished.connect(self.on_api_finished)
@@ -620,6 +641,10 @@ class ChatbotGUI(QWidget):
     def on_api_success(self, data):
         answer = data.get('answer', "Üzgünüm, yanıtı işleyemedim.")
         self.typing_indicator.set_text(answer)
+        
+        if 'session_id' in data:
+            self.session_id = data['session_id']
+
 
     def on_api_error(self, error_tuple):
         _, _, error_message = error_tuple
