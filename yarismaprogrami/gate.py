@@ -1,5 +1,3 @@
-# main_gateway.py
-
 import asyncio
 import aiohttp
 from fastapi import FastAPI, HTTPException

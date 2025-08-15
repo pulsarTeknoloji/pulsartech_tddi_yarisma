@@ -1,5 +1,3 @@
-# strategic_router_service.py
-
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import google.generativeai as genai
